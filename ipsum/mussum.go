@@ -27,12 +27,7 @@ func GetMussum(size int) (string, error) {
 		return "", err
 	}
 
-	// Get lorum ipsum phrases
-	list := strings.Split(content.Mussum, ". ")
-
-	// remove dot from last element if it has
-	last := len(list) - 1
-	list[last] = strings.Replace(list[last], ".", "", 1)
+	list := content.Mussum
 
 	// use count to control string size
 	count := 0
@@ -59,18 +54,16 @@ func GetMussum(size int) (string, error) {
 		count += n
 
 		// it is needed adjust the phrases to return
-		// a valid text; so a dot or space is added
+		// a valid text; so a space is added
 		// (if possible) after phrases addition
-		for _, v := range []int8{46, 32} {
-			if count < size {
-				// add a dot or/and space.
-				err = b.WriteByte(byte(v))
-				if err != nil {
-					return "", err
-				}
-
-				count++
+		if count < size {
+			// add a dot or/and space.
+			err = b.WriteByte(byte(32))
+			if err != nil {
+				return "", err
 			}
+
+			count++
 		}
 	}
 

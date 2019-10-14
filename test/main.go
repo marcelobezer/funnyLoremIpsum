@@ -8,5 +8,5 @@ import (
 
 func main() {
 	// for test
-	fmt.Println(ipsum.GetMussum(5000))
+	fmt.Println(ipsum.GetMussum(256))
 }

@@ -9,7 +9,7 @@ import (
 
 // LoremIpsum models a lorem ipsum
 type LoremIpsum struct {
-	Mussum string `yaml:"mussum"`
+	Mussum []string `yaml:"mussum"`
 }
 
 func getIpsums() (LoremIpsum, error) {
